@@ -1,0 +1,24 @@
+
+#import all neccesary modules
+import csv
+
+#read in excel file
+def make_dictionary_from_csvfile(csvfile):
+    '''This function takes as an input a .csv file that contains a SMILES string and a value for ALDH1_inhibition
+    ("0" means not inhibatory and "1"means inhibatory)on each line and the first line for this file contains a
+    header line. The function then returns a dictionary which has as keys the SMILES string as a string and as 
+    value the integer 1 or 0.'''
+    dict_molecules = {}
+    with open(csvfile, 'r') as file:
+        lines = csv.reader(file)
+        next(lines)                                                            #skip over first header line 
+        for line in lines:
+            line_string =line[0]                                               #gets values out of the list
+            key_value_list = line_string.split(",")                            #splits the first from the second atribute by splitting on the ,
+            key = key_value_list[0]  
+            value = key_value_list[1].strip()[1:-1]                            #extra '' is removed
+            dict_molecules[key] = int(value)                                   #the values are made an integer
+    return dict_molecules
+
+
+dict_molecules= make_dictionary_from_csvfile("tested_molecules-1.csv")
