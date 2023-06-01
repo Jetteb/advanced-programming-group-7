@@ -22,3 +22,4 @@ def make_dictionary_from_csvfile(csvfile):
 
 
 dict_molecules= make_dictionary_from_csvfile("tested_molecules-1.csv")
+ 
